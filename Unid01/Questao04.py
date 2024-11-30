@@ -6,7 +6,7 @@ testar_funcoes_com_x = False
 
 #Definindo a função
 def s(x):
-        return (x - 1)**3
+        return (x - 1 + x**2)**3
 
 #Método da Falsa Posição
 def metodo_falsa_posicao(a, b, epsilon):
@@ -42,13 +42,13 @@ def metodo_falsa_posicao(a, b, epsilon):
                 print(f"Iterações necessárias: {ite}")
                 print(f"A raiz aproximada é: {x:.5f}") 
                 if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
 
         else:
             while (abs(b - a) > epsilon):
                 ite += 1
-                x = (a * s(b) - b * s(a)) / (s(b) - s(a)) # Fórmula da falsa posição
-                if s(x) == 0:
+                x = ((a * s(b)) - (b * s(a))) / (s(b) - s(a)) # Fórmula da falsa posição
+                if abs(s(x)) < epsilon:
                     break
                 elif abs(s(a)) < epsilon:
                     x = a
@@ -66,8 +66,9 @@ def metodo_falsa_posicao(a, b, epsilon):
             print(f"Iterações necessárias: {ite}")
             print(f"A raiz aproximada é: {x:.5f}")   
             if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
     except Exception as e:
+        print(f'Erro: {e}')
         print('\nIntervalo inválido no Método da Falsa Posição, digite outro intervalo.')
         #Recebe um novo intervalo do usuário
         a = float(input('Digite o início do intervalo: '))
@@ -90,7 +91,7 @@ def metodo_bissecao(a, b, epsilon):
                 k-=1
                 ite += 1
                 x = (a + b) / 2
-                if s(x) == 0:
+                if abs(s(x)) < epsilon:
                     break
                 elif abs(s(a)) < epsilon:
                     x = a
@@ -111,7 +112,7 @@ def metodo_bissecao(a, b, epsilon):
                 print(f"Iterações necessárias: {ite}")
                 print(f"A raiz aproximada é: {x:.5f}")
                 if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
 
         else:
             while abs(b - a) > epsilon:
@@ -129,9 +130,10 @@ def metodo_bissecao(a, b, epsilon):
             print(f"Iterações necessárias: {ite}")
             print(f"A raiz aproximada é: {x:.5f}")
             if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
 
     except Exception as e:
+        print(f'Erro: {e}')
         print('\nIntervalo inválido no Método da Bisseção, digite outro intervalo.')
         #Recebe um novo intervalo do usuário
         a = float(input('Digite o início do intervalo: '))

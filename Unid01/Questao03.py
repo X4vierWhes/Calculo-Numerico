@@ -43,7 +43,7 @@ def metodo_bissecao(a, b, epsilon):
                 print(f"Iterações necessárias: {ite}")
                 print(f"A raiz aproximada é: {x:.5f}")
                 if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
 
         else:
             while abs(b - a) > epsilon:
@@ -61,7 +61,7 @@ def metodo_bissecao(a, b, epsilon):
             print(f"Iterações necessárias: {ite}")
             print(f"A raiz aproximada é: {x:.5f}")
             if(testar_funcoes_com_x):
-                    print(f's(x) é menor que epsilon? {s(x) < epsilon}')
+                    print(f's(x) é menor que epsilon? {abs(s(x)) < epsilon}')
 
     except Exception as e:
         print('\nIntervalo inválido no Método da Bisseção, digite outro intervalo.')
