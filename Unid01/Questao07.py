@@ -8,7 +8,7 @@ def derivada(x, epsilon=1e-7):
     """Calcula a derivada numérica da função f em x usando o valor de epsilon."""
     return (f(x + epsilon) - f(x)) / epsilon
 
-def arredondar_raiz(raiz, tolerancia=1e-4):
+def arredondar_raiz(raiz, tolerancia=1e-3):
     """
     Arredonda a raiz para o inteiro mais próximo se a diferença for menor que a tolerância.
     """
