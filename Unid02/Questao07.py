@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import csv
+import os
 
 # Avalia o polinômio interpolador usando polinômios de Lagrange
 def interpolL(x, T):
@@ -22,8 +23,9 @@ def ler_dados(arquivo):
     with open(arquivo, 'r') as f:
         reader = csv.reader(f)
         for linha in reader:
-            x, y = map(float, linha)
-            T.append((x, y))
+            if linha:  
+                x, y = map(float, linha[:2])  
+                T.append((x, y))
     return T
 
 def salvar_resultados(arquivo, resultados):
@@ -32,9 +34,8 @@ def salvar_resultados(arquivo, resultados):
         writer.writerow(['x', 'p(x)'])
         writer.writerows(resultados)
 
-input_file = 'Unid02\Questao07.csv'
-
-output_file = 'resultados.csv'
+input_file = os.path.join('Unid02', 'Questao07.csv')
+output_file = 'resultados_07.csv'
 T = ler_dados(input_file)
 
 p = lambda x: interpolL(x, T)
@@ -47,9 +48,6 @@ salvar_resultados(output_file, resultados)
 # Plota o gráfico
 plt.figure(figsize=(6, 6))
 y_values = [p(xi) for xi in x]
-plt.plot(x, y_values, color='#FF4500', marker='', linewidth=1.0)
-# Plota o gráfico
-plt.figure(figsize=(6, 6))
 plt.plot(x, y_values, color='#FF4500', marker='', linewidth=1.0)
 plt.grid()
 plt.show()
