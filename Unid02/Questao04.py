@@ -6,8 +6,8 @@ import numpy as np
 #3) Sistemas podem ser SPI ou SI, ou seja, devemos testar isso antes OK
 #4) Determinante != de 0 OK
 #5) Testar se a matriz é diagonal dominante OK
-#6) Testar se a soluçao encontrada realmente está correta
-#7) Dízima breka o código
+#6) Testar se a soluçao encontrada realmente está correta OK
+#7) Dízima breka o código OK
 def gauss_jacobi(A, b, x0, epsilon=1e-6, max_iter=100):
     n = len(b) #Ordem da Matriz
     x = x0.copy() #Cópia do vetor de solução inicial
@@ -63,9 +63,7 @@ def gauss_jacobi(A, b, x0, epsilon=1e-6, max_iter=100):
         
     raise ValueError("O método de Gauss-Jacobi não convergiu dentro do número máximo de iterações.")
 
-def test_solve(A, solution, b, epsilon=1e-3):
-    #Variável para printar ou não os resultados
-    print_results = True
+def test_solve(A, solution, b, print_results, epsilon=1e-3, ):
     n = len(A)
     approximate_result = np.zeros_like(b)
 
@@ -126,7 +124,7 @@ b4 = np.array([-16.612, -33.651, 8.572, 29.415, 17.258], dtype=float)
 #Main
 x0 = np.array([0, 0, 0, 0], dtype=float)
 solution, iterations = gauss_jacobi(A, b, x0)
-is_solution = test_solve(A, solution, b)
+is_solution = test_solve(A, solution, b, False)
 
 print("-----------------------------------")
 print("Solução aproximada:", solution)
