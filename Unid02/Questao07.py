@@ -11,11 +11,9 @@ def interpolL(x, T):
         denominador = 1.0
         for j in range(len(T)):
             if j != i:
+                produto *= (x - T[j][0])
                 denominador *= (T[i][0] - T[j][0])
-        for j in range(len(T)):
-            if j != i:
-                produto *= (x - T[j][0]) / denominador
-        soma = soma + T[i][1] * produto
+        soma += (produto / denominador) * T[i][1]
     return soma
 
 def ler_dados(arquivo):
@@ -33,6 +31,9 @@ def salvar_resultados(arquivo, resultados):
         writer = csv.writer(f)
         writer.writerow(['x', 'p(x)'])
         writer.writerows(resultados)
+
+
+
 
 input_file = os.path.join('Unid02', 'Questao07.csv')
 output_file = 'resultados_07.csv'
