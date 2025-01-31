@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Definindo a função da equação diferencial
+# Função 
 def dvdt(v, g, cd, m):
     return g - (cd / m) * v**2
 
@@ -24,7 +24,7 @@ def euler(g, cd, m, y0, v0, t0, dt):
 
     return t_array, y_array, v_array
 
-# Método de Runge-Kutta de quarta ordem (RK4)
+# Método de Runge-Kutta
 def rk4(g, cd, m, y0, v0, t0, dt):
     t = t0
     y = y0
