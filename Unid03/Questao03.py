@@ -1,36 +1,32 @@
 import numpy as np
 
 def f(x):
-    return np.exp(x)
+    return x**2  # Função a ser integrada
 
+# Entrada do usuário
 a = float(input("Digite o intervalo inferior: "))
 b = float(input("Digite o intervalo superior: "))
 n = int(input("Digite o número de partições (múltiplo de 4): "))
 
-# Garantindo que n seja múltiplo de 4
+# Garantir que n seja múltiplo de 4
 if n % 4 != 0:
-    print("O número de partições deve ser múltiplo de 4 para a Regra de Boole.")
-    exit()
+    raise ValueError("O número de partições deve ser múltiplo de 4 para a regra de Boole.")
 
-deltax = (b - a) / n
+deltax = (b - a) / n  # Tamanho do subintervalo
 
-soma1 = 0
-soma2 = 0
-soma3 = 0
-soma4 = 0
-soma5 = 0
+# Aplicação da Regra de Boole Repetida
+soma = 0
 
-for i in range(n + 1):
-    x = a + deltax * i
-    if i == 0 or i == n:
-        soma1 = (soma1 + 7 * f(x))
-    elif i % 4 == 1 or i % 4 == 3:
-        soma2 = (soma2 + 32 * f(x))
-    elif i % 4 == 2:
-        soma3 = (soma3 + 12 * f(x))
-    elif i % 4 == 0:
-        soma4 = (soma4 + 14 * f(x))
+for i in range(0, n + 1, 4):
+    x0 = a + i * deltax
+    x1 = x0 + deltax
+    x2 = x0 + 2 * deltax
+    x3 = x0 + 3 * deltax
+    x4 = x0 + 4 * deltax
+    x5 = x0 + 5 * deltax
 
-soma = (2 * deltax / 45) * (soma1 + soma2 + soma3 + soma4)
+    soma += (19 * f(x0) + 75 * f(x1) + 50 * f(x2) + 50 * f(x3) + 75 * f(x4) + 19 * f(x5))
 
-print("O valor aproximado da integral é:", soma)
+integral = (b - a) * soma / (288 * (n / 4))
+
+print(f"Resultado da integral: {integral}")
